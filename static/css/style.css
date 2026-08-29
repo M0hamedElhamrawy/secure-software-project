@@ -1,0 +1,209 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background-color: #f7f8fa;
+    color: #1f2933;
+    line-height: 1.5;
+}
+
+a {
+    color: #2563eb;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.navbar {
+    background-color: #ffffff;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.navbar-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.brand {
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: #1f2933;
+}
+
+.nav-links a {
+    margin-left: 18px;
+    color: #334155;
+    font-weight: 500;
+}
+
+.content {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 32px 24px;
+}
+
+.site-footer {
+    text-align: center;
+    padding: 20px;
+    color: #64748b;
+    font-size: 0.85rem;
+}
+
+.hero {
+    padding: 32px 0;
+}
+
+.hero h1 {
+    margin-bottom: 8px;
+}
+
+section {
+    margin-bottom: 36px;
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+}
+
+.card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 16px;
+}
+
+.card h3 {
+    margin-top: 0;
+    margin-bottom: 6px;
+}
+
+.muted {
+    color: #64748b;
+    font-size: 0.9rem;
+}
+
+.form-page {
+    max-width: 480px;
+}
+
+.stacked-form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.stacked-form label {
+    font-weight: 600;
+    margin-top: 8px;
+}
+
+.stacked-form input,
+.stacked-form textarea,
+.stacked-form select {
+    padding: 8px 10px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+.inline-form {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.inline-form input {
+    flex: 1;
+    padding: 8px 10px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+}
+
+button, .stacked-form button, .inline-form button {
+    background-color: #2563eb;
+    color: #ffffff;
+    border: none;
+    padding: 9px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.95rem;
+}
+
+button:hover {
+    background-color: #1d4ed8;
+}
+
+.link-button {
+    background: none;
+    border: none;
+    color: #b91c1c;
+    padding: 0;
+    font-size: 0.85rem;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.data-table th, .data-table td {
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.data-table th {
+    background-color: #f1f5f9;
+}
+
+.info-table {
+    border-collapse: collapse;
+    margin-bottom: 24px;
+}
+
+.info-table th, .info-table td {
+    text-align: left;
+    padding: 6px 12px;
+}
+
+.info-table th {
+    color: #64748b;
+    font-weight: 600;
+}
+
+.error {
+    background-color: #fef2f2;
+    color: #b91c1c;
+    border: 1px solid #fecaca;
+    padding: 10px 12px;
+    border-radius: 6px;
+}
+
+.notice {
+    background-color: #eff6ff;
+    border: 1px solid #bfdbfe;
+    padding: 10px 12px;
+    border-radius: 6px;
+}
+
+.note-content {
+    margin: 8px 0;
+}

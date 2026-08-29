@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Courses — Campus Notes Portal{% endblock %}
+{% block content %}
+<section>
+    <h1>Course Catalog</h1>
+    <form method="get" class="inline-form">
+        <input type="text" name="q" placeholder="Search by code or title" value="{{ query }}">
+        <button type="submit">Search</button>
+    </form>
+    {% if notice %}
+    <p class="notice">{{ notice }}</p>
+    {% endif %}
+</section>
+
+<section>
+    <div class="card-grid">
+        {% for course in courses %}
+        <div class="card">
+            <h3><a href="{{ url_for('course_detail', course_id=course.id) }}">{{ course.code }} &mdash; {{ course.title }}</a></h3>
+            <p class="muted">{{ course.instructor }} &middot; {{ course.department }}</p>
+            <p>{{ course.description }}</p>
+        </div>
+        {% else %}
+        <p class="muted">No courses matched your search.</p>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

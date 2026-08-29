@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Home — Campus Notes Portal{% endblock %}
+{% block content %}
+<section class="hero">
+    <h1>Welcome to the Campus Notes Portal</h1>
+    <p>Browse courses, share study notes with classmates, and keep track of your coursework in one place.</p>
+</section>
+
+<section>
+    <h2>Featured Courses</h2>
+    <div class="card-grid">
+        {% for course in courses %}
+        <div class="card">
+            <h3>{{ course.code }} &mdash; {{ course.title }}</h3>
+            <p class="muted">{{ course.instructor }} &middot; {{ course.department }}</p>
+            <p>{{ course.description }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

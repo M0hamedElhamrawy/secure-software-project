@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Dashboard — Campus Notes Portal{% endblock %}
+{% block content %}
+<section>
+    <h1>My Dashboard</h1>
+    <p class="muted">Welcome back, {{ current_user.name }}.</p>
+</section>
+
+<section>
+    <h2>Add a Note</h2>
+    <form method="post" action="{{ url_for('create_note') }}" class="stacked-form">
+        <label for="title">Title</label>
+        <input type="text" id="title" name="title" required>
+
+        <label for="course_id">Course</label>
+        <select id="course_id" name="course_id">
+            <option value="">General</option>
+            {% for course in courses %}
+            <option value="{{ course.id }}">{{ course.code }} &mdash; {{ course.title }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="content">Note</label>
+        <textarea id="content" name="content" rows="4" required></textarea>
+
+        <button type="submit">Save Note</button>
+    </form>
+</section>
+
+<section>
+    <h2>My Notes</h2>
+    <div class="card-grid">
+        {% for note in notes %}
+        <div class="card">
+            <h3>{{ note.title }}</h3>
+            {% if note.course_code %}<p class="muted">{{ note.course_code }}</p>{% endif %}
+            <div class="note-content">{{ note.content|safe }}</div>
+            <small class="muted">{{ note.created_at }}</small>
+            <form method="post" action="{{ url_for('delete_own_note', note_id=note.id) }}">
+                <button type="submit" class="link-button">Delete</button>
+            </form>
+        </div>
+        {% else %}
+        <p class="muted">You haven't added any notes yet.</p>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

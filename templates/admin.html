@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}Admin — Campus Notes Portal{% endblock %}
+{% block content %}
+<section>
+    <h1>Admin Dashboard</h1>
+</section>
+
+<section>
+    <h2>Registered Users</h2>
+    <table class="data-table">
+        <thead>
+            <tr><th>ID</th><th>Name</th><th>Email</th><th>Role</th><th>Joined</th></tr>
+        </thead>
+        <tbody>
+            {% for u in users %}
+            <tr>
+                <td>{{ u.id }}</td>
+                <td>{{ u.name }}</td>
+                <td>{{ u.email }}</td>
+                <td>{{ u.role }}</td>
+                <td>{{ u.created_at }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+
+<section>
+    <h2>All Notes</h2>
+    <table class="data-table">
+        <thead>
+            <tr><th>Author</th><th>Title</th><th>Created</th><th></th></tr>
+        </thead>
+        <tbody>
+            {% for note in notes %}
+            <tr>
+                <td>{{ note.author_name }}</td>
+                <td>{{ note.title }}</td>
+                <td>{{ note.created_at }}</td>
+                <td>
+                    <form method="post" action="{{ url_for('admin_delete_note', note_id=note.id) }}">
+                        <button type="submit" class="link-button">Remove</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+{% endblock %}

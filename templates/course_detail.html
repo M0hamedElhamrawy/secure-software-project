@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}{{ course.code }} — Campus Notes Portal{% endblock %}
+{% block content %}
+<section>
+    <h1>{{ course.code }} &mdash; {{ course.title }}</h1>
+    <p class="muted">{{ course.instructor }} &middot; {{ course.department }}</p>
+    <p>{{ course.description }}</p>
+</section>
+
+<section>
+    <h2>Course Materials</h2>
+    <table class="data-table">
+        <thead>
+            <tr><th>Material</th><th></th></tr>
+        </thead>
+        <tbody>
+            {% for m in materials %}
+            <tr>
+                <td>{{ m.label }}</td>
+                <td><a href="{{ url_for('download_material', file=m.filename) }}">Download</a></td>
+            </tr>
+            {% else %}
+            <tr><td colspan="2" class="muted">No materials uploaded yet.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+{% endblock %}

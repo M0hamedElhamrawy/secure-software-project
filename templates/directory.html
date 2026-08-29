@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Directory — Campus Notes Portal{% endblock %}
+{% block content %}
+<section>
+    <h1>Classmate Directory</h1>
+    <form method="get" class="inline-form">
+        <input type="text" name="name" placeholder="Search by name" value="{{ name }}">
+        <button type="submit">Search</button>
+    </form>
+</section>
+
+<section>
+    <table class="data-table">
+        <thead>
+            <tr><th>Name</th><th>Email</th><th>Role</th><th>Bio</th></tr>
+        </thead>
+        <tbody>
+            {% for r in results %}
+            <tr>
+                <td>{{ r.name }}</td>
+                <td>{{ r.email }}</td>
+                <td>{{ r.role }}</td>
+                <td>{{ r.bio }}</td>
+            </tr>
+            {% else %}
+            <tr><td colspan="4" class="muted">Search for a classmate by name to see results.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+{% endblock %}

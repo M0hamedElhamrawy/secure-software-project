@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}My Profile — Campus Notes Portal{% endblock %}
+{% block content %}
+<section class="form-page">
+    <h1>My Profile</h1>
+    <table class="info-table">
+        <tr><th>Name</th><td>{{ user.name }}</td></tr>
+        <tr><th>Email</th><td>{{ user.email }}</td></tr>
+        <tr><th>Role</th><td>{{ user.role }}</td></tr>
+        <tr><th>Member since</th><td>{{ user.created_at }}</td></tr>
+    </table>
+
+    <h2>Bio</h2>
+    <form method="post" class="stacked-form">
+        <textarea name="bio" rows="4">{{ user.bio }}</textarea>
+        <button type="submit">Update Bio</button>
+    </form>
+</section>
+{% endblock %}
