@@ -1,0 +1,55 @@
+name: DAST - OWASP ZAP Baseline Scan
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  zap-scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Start Flask application in background
+        run: |
+          nohup python app.py > flask.log 2>&1 &
+          # Give Flask time to boot and seed the database
+          sleep 8
+          curl --retry 5 --retry-delay 2 --retry-connrefused http://localhost:5000/ -o /dev/null -s
+
+      - name: Run OWASP ZAP Baseline Scan
+        uses: zaproxy/action-baseline@v0.12.0
+        with:
+          target: "http://localhost:5000"
+          # -a = include alpha-quality passive rules, matches what we ran manually in ZAP
+          cmd_options: "-a"
+          # Don't fail the whole build on findings; we want the report either way
+          fail_action: false
+
+      - name: Upload ZAP report as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: zap-dast-report
+          path: |
+            report_html.html
+            report_md.md
+            report_json.json
+          retention-days: 30
+          if-no-files-found: warn
+
+      - name: Show Flask log (debug helper)
+        if: always()
+        run: cat flask.log

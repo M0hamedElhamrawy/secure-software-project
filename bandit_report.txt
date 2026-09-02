@@ -1,0 +1,51 @@
+Run started:2026-09-02 22:17:42.330436+00:00
+
+Test results:
+>> Issue: [B105:hardcoded_password_string] Possible hardcoded password: 'f8f7c1e6a9b34d2e8c6a1f0d9b7e4c3a2d1e0f9c8b7a6d5e4f3c2b1a0d9e8f7'
+   Severity: Low   Confidence: Medium
+   CWE: CWE-259 (https://cwe.mitre.org/data/definitions/259.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b105_hardcoded_password_string.html
+   Location: .\app.py:20:11
+19	app = Flask(__name__)
+20	app.config["SECRET_KEY"] = "f8f7c1e6a9b34d2e8c6a1f0d9b7e4c3a2d1e0f9c8b7a6d5e4f3c2b1a0d9e8f7"
+21	
+
+--------------------------------------------------
+>> Issue: [B704:markupsafe_markup_xss] Potential XSS with ``markupsafe.Markup`` detected. Do not use ``Markup`` on untrusted data.
+   Severity: Medium   Confidence: High
+   CWE: CWE-79 (https://cwe.mitre.org/data/definitions/79.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b704_markupsafe_markup_xss.html
+   Location: .\app.py:305:17
+304	        ]
+305	        notice = Markup("Showing results for: " + q)
+306	
+
+--------------------------------------------------
+>> Issue: [B608:hardcoded_sql_expressions] Possible SQL injection vector through string-based query construction.
+   Severity: Medium   Confidence: Low
+   CWE: CWE-89 (https://cwe.mitre.org/data/definitions/89.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b608_hardcoded_sql_expressions.html
+   Location: .\app.py:355:16
+354	        db = get_db()
+355	        query = "SELECT id, name, email, role, bio FROM users WHERE name LIKE '%" + name + "%'"
+356	        results = db.execute(query).fetchall()
+
+--------------------------------------------------
+
+Code scanned:
+	Total lines of code: 359
+	Total lines skipped (#nosec): 0
+	Total potential issues skipped due to specifically being disabled (e.g., #nosec BXXX): 0
+
+Run metrics:
+	Total issues (by severity):
+		Undefined: 0
+		Low: 1
+		Medium: 2
+		High: 0
+	Total issues (by confidence):
+		Undefined: 0
+		Low: 1
+		Medium: 1
+		High: 1
+Files skipped (0):
