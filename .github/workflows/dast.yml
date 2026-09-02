@@ -38,6 +38,9 @@ jobs:
           cmd_options: "-a"
           # Don't fail the whole build on findings; we want the report either way
           fail_action: false
+          # We only want the report as an artifact, not a GitHub Issue
+          # (the default GITHUB_TOKEN doesn't have permission to create issues)
+          allow_issue_writing: false
 
       - name: Upload ZAP report as artifact
         uses: actions/upload-artifact@v4
